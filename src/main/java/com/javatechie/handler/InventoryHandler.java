@@ -3,6 +3,8 @@ package com.javatechie.handler;
 import com.javatechie.entity.Product;
 import com.javatechie.repository.InventoryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InventoryHandler {
@@ -14,6 +16,7 @@ public class InventoryHandler {
         this.inventoryRepository = inventoryRepository;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public Product updateProductDetails(Product product) {
 
         //forcefully throwing exception to simulate use of tx
