@@ -48,7 +48,8 @@ public class OrderProcessingService {
     // to rollback independently if there is any exception without impacting outer transaction
 
     //outer tx
-    @Transactional(propagation = Propagation.REQUIRED)
+    // isolation : controls the visibility of changes made by one transaction to other transaction
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
     public Order placeAnOrder(Order order) {
 
         // get product inventory
